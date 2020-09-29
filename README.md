@@ -1,2 +1,2 @@
-# chex-browser
+# lexa-browser
 Mobile Browser
