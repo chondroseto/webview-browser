@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <RelativeLayout
+        android:id="@+id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
@@ -34,16 +38,26 @@
             android:src="@drawable/icon_search"
             android:layout_margin="13dp"
             android:visibility="gone"/>
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="30dp"
-            android:layout_alignParentTop="true"
+        <ImageButton
+            android:id="@+id/refresh"
             android:layout_alignParentRight="true"
-            android:visibility="invisible"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="13dp"
+            android:background="@color/transparant"
+            android:src="@drawable/refresh_icon" />
+
+
     </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
 
     <WebView
         android:layout_weight="0.01"
@@ -89,10 +103,8 @@
             android:text="www.google.com"/>
     </LinearLayout>
 
-
-
-
     <LinearLayout
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -100,12 +112,13 @@
         android:weightSum="5">
 
         <ImageButton
-            android:id="@+id/history"
+            android:id="@+id/fullscreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparant"
-            android:src="@drawable/history_icon" />
+            android:src="@drawable/icon_fullscreen" />
+
 
         <ImageButton
             android:id="@+id/back_arrow"
@@ -132,14 +145,25 @@
             android:src="@drawable/forward_arrow" />
 
         <ImageButton
-            android:id="@+id/refresh"
+            android:id="@+id/history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/transparant"
-            android:src="@drawable/refresh_icon" />
+            android:src="@drawable/history_icon" />
 
     </LinearLayout>
 
+    </LinearLayout>
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/miniscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:background="@drawable/btn_miniscreen_custom"
+        android:src="@drawable/icon_miniscreen" />
+
+
+</RelativeLayout>

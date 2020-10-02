@@ -1,5 +1,6 @@
 package com.xela.browser.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.xela.browser.History;
+import com.xela.browser.MainActivity;
 import com.xela.browser.R;
 import com.xela.browser.model.HistoryData;
 

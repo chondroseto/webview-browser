@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
     WebView webView;
     EditText editText;
     ProgressBar progressBar;
-    ImageButton back, forward, refresh, homeButton,goButton,hist_btn;
-    LinearLayout homeui;
+    ImageButton back, forward, refresh, homeButton,goButton,hist_btn,full_screen,mini_screen;
+    LinearLayout homeui,bottom_navigation;
     Button open_book1,open_book2,open_book3,open_book4,open_book5;
     String checkurl;
+    RelativeLayout top_navigation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         open_book5 = (Button) findViewById(R.id.bookmark_btn_5);
 
 
+        top_navigation = (RelativeLayout) findViewById(R.id.top_nav);
+        bottom_navigation = (LinearLayout) findViewById(R.id.bottom_nav);
+        mini_screen = (ImageButton) findViewById(R.id.miniscreen);
+        full_screen = (ImageButton) findViewById(R.id.fullscreen);
+
         editText = (EditText) findViewById(R.id.address);
         hist_btn = (ImageButton) findViewById(R.id.history);
         back = (ImageButton) findViewById(R.id.back_arrow);
@@ -48,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
         goButton = (ImageButton)findViewById(R.id.go_btn);
         refresh = (ImageButton) findViewById(R.id.refresh);
         homeButton = (ImageButton) findViewById(R.id.home);
+
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setMax(100);
+
         webView = (WebView) findViewById(R.id.web_view);
 
         homepage();
@@ -120,13 +131,30 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.reload();
+            }
+        });
+
         webView.setWebViewClient(new MyWebViewClient());
 
-        hist_btn.setOnClickListener(new View.OnClickListener() {
+        mini_screen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, History.class);
-                startActivity(intent);
+                top_navigation.setVisibility(View.VISIBLE);
+                bottom_navigation.setVisibility(View.VISIBLE);
+                mini_screen.setVisibility(View.GONE);
+            }
+        });
+        full_screen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               top_navigation.setVisibility(View.GONE);
+               bottom_navigation.setVisibility(View.GONE);
+               mini_screen.setVisibility(View.VISIBLE);
             }
         });
 
@@ -139,6 +167,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                webView.setVisibility(View.GONE);
+                homeui.setVisibility(View.VISIBLE);
+            }
+        });
+
         forward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,18 +184,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        refresh.setOnClickListener(new View.OnClickListener() {
+        hist_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                webView.reload();
-            }
-        });
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                webView.setVisibility(View.GONE);
-                homeui.setVisibility(View.VISIBLE);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, History.class);
+                startActivity(intent);
             }
         });
     }

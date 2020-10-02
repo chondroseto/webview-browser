@@ -48,6 +48,8 @@ public class History extends AppCompatActivity {
         adapter = new HistoryAdapter(data_recycler);
         rv.setLayoutManager(new LinearLayoutManager(History.this));
         rv.setAdapter(adapter);
+
+
     }
 
     public void dataRecycler(){
