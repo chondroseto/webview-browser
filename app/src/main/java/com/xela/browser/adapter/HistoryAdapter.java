@@ -1,17 +1,20 @@
 package com.xela.browser.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xela.browser.History;
 import com.xela.browser.MainActivity;
+import com.xela.browser.NetworkState;
 import com.xela.browser.R;
 import com.xela.browser.model.HistoryData;
 
@@ -37,6 +40,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder holder, int position) {
         holder.no.setText(dataRecycler.get(position).getNo());
         holder.link_btn.setText(dataRecycler.get(position).getLink());
+        holder.link_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                view.getContext().startActivity(intent);
+
+            }
+        });
     }
 
     @Override

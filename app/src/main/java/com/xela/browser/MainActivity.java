@@ -25,10 +25,9 @@ public class MainActivity extends AppCompatActivity {
     WebView webView;
     EditText editText;
     ProgressBar progressBar;
-    ImageButton back, forward, refresh, homeButton,goButton,hist_btn,full_screen,mini_screen;
+    ImageButton back, forward, refresh, homeButton,goButton,hist_btn,full_screen,mini_screen,stop_btn;
     LinearLayout homeui,bottom_navigation;
     Button open_book1,open_book2,open_book3,open_book4,open_book5;
-    String checkurl;
     RelativeLayout top_navigation;
 
 
@@ -37,31 +36,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeui = (LinearLayout) findViewById(R.id.homepage);
-        open_book1 = (Button) findViewById(R.id.bookmark_btn_1);
-        open_book2 = (Button) findViewById(R.id.bookmark_btn_2);
-        open_book3 = (Button) findViewById(R.id.bookmark_btn_3);
-        open_book4 = (Button) findViewById(R.id.bookmark_btn_4);
-        open_book5 = (Button) findViewById(R.id.bookmark_btn_5);
+        homeui =  findViewById(R.id.homepage);
+        open_book1 =  findViewById(R.id.bookmark_btn_1);
+        open_book2 = findViewById(R.id.bookmark_btn_2);
+        open_book3 =  findViewById(R.id.bookmark_btn_3);
+        open_book4 =  findViewById(R.id.bookmark_btn_4);
+        open_book5 =  findViewById(R.id.bookmark_btn_5);
 
 
-        top_navigation = (RelativeLayout) findViewById(R.id.top_nav);
-        bottom_navigation = (LinearLayout) findViewById(R.id.bottom_nav);
-        mini_screen = (ImageButton) findViewById(R.id.miniscreen);
-        full_screen = (ImageButton) findViewById(R.id.fullscreen);
+        top_navigation =  findViewById(R.id.top_nav);
+        bottom_navigation =  findViewById(R.id.bottom_nav);
+        mini_screen =  findViewById(R.id.miniscreen);
+        full_screen =  findViewById(R.id.fullscreen);
 
-        editText = (EditText) findViewById(R.id.address);
-        hist_btn = (ImageButton) findViewById(R.id.history);
-        back = (ImageButton) findViewById(R.id.back_arrow);
-        forward = (ImageButton) findViewById(R.id.forward_arrow);
-        goButton = (ImageButton)findViewById(R.id.go_btn);
-        refresh = (ImageButton) findViewById(R.id.refresh);
-        homeButton = (ImageButton) findViewById(R.id.home);
+        editText =  findViewById(R.id.address);
+        hist_btn =  findViewById(R.id.history);
+        back =  findViewById(R.id.back_arrow);
+        forward =  findViewById(R.id.forward_arrow);
+        goButton = findViewById(R.id.go_btn);
+        refresh =  findViewById(R.id.refresh);
+        stop_btn =  findViewById(R.id.stop);
+        homeButton =  findViewById(R.id.home);
 
-        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar =  findViewById(R.id.progress_bar);
         progressBar.setMax(100);
 
-        webView = (WebView) findViewById(R.id.web_view);
+        webView =  findViewById(R.id.web_view);
 
         homepage();
         if (savedInstanceState != null) {
@@ -84,9 +84,14 @@ public class MainActivity extends AppCompatActivity {
                     if ((newProgress > 0) && (newProgress < 100)) {
                         progressBar.setVisibility(ProgressBar.VISIBLE);
                         editText.setText(webView.getUrl());
+                        refresh.setVisibility(View.GONE);
+                        stop_btn.setVisibility(View.VISIBLE);
+
                     }
                     if (newProgress == 100) {
                         progressBar.setVisibility(ProgressBar.GONE);
+                        refresh.setVisibility(View.VISIBLE);
+                        stop_btn.setVisibility(View.GONE);
                     }
                 }
             });
@@ -136,6 +141,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 webView.reload();
+            }
+        });
+
+        stop_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.stopLoading();
             }
         });
 
@@ -299,4 +311,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }
