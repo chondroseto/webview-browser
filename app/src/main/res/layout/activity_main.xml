@@ -30,15 +30,6 @@
             android:layout_margin="10dp"/>
 
         <ImageButton
-            android:id="@+id/go_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:background="@color/transparant"
-            android:src="@drawable/icon_search"
-            android:layout_margin="13dp"
-            android:visibility="gone"/>
-        <ImageButton
             android:id="@+id/refresh"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
@@ -47,6 +38,7 @@
             android:layout_margin="13dp"
             android:visibility="gone"
             android:background="@color/transparant"
+            android:onClick="refresh_btn"
             android:src="@drawable/refresh_icon" />
 
         <ImageButton
@@ -57,6 +49,7 @@
             android:layout_weight="1"
             android:layout_margin="13dp"
             android:visibility="gone"
+            android:onClick="stop_btn"
             android:background="@color/transparant"
             android:src="@drawable/icon_stop" />
 
@@ -127,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="fullscreen_btn"
             android:background="@color/transparant"
             android:src="@drawable/icon_fullscreen" />
 
@@ -136,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="back_btn"
             android:background="@color/transparant"
             android:src="@drawable/back_arrow" />
 
@@ -144,6 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="home_btn"
             android:background="@color/transparant"
             android:src="@drawable/home_icon" />
 
@@ -152,6 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="forward_btn"
             android:background="@color/transparant"
             android:src="@drawable/forward_arrow" />
 
@@ -160,6 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="history_btn"
             android:background="@color/transparant"
             android:src="@drawable/history_icon" />
 
@@ -173,6 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
+        android:onClick="miniscreen_btn"
         android:background="@drawable/btn_miniscreen_custom"
         android:src="@drawable/icon_miniscreen" />
 

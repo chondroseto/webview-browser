@@ -26,23 +26,12 @@ public class History extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     RecyclerView rv;
 
-    ImageButton back_btn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        rv = (RecyclerView) findViewById(R.id.datahistory_recview);
-        back_btn = (ImageButton) findViewById(R.id.back);
-
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(History.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        rv = findViewById(R.id.datahistory_recview);
 
         dataRecycler();
         adapter = new HistoryAdapter(data_recycler);
@@ -57,5 +46,10 @@ public class History extends AppCompatActivity {
         data_recycler.add(new HistoryData("1","mangapark.net"));
         data_recycler.add(new HistoryData("2","google.com"));
         data_recycler.add(new HistoryData("3","bing.com"));
+    }
+
+    public void back_btn(View view) {
+        Intent intent = new Intent(History.this, MainActivity.class);
+        startActivity(intent);
     }
 }

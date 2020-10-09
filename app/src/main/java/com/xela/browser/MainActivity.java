@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     WebView webView;
     EditText editText;
     ProgressBar progressBar;
-    ImageButton back, forward, refresh, homeButton,goButton,hist_btn,full_screen,mini_screen,stop_btn;
+    ImageButton refresh,mini_screen,stop_btn;
     LinearLayout homeui,bottom_navigation;
     Button open_book1,open_book2,open_book3,open_book4,open_book5;
     RelativeLayout top_navigation;
@@ -54,17 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
         top_navigation =  findViewById(R.id.top_nav);
         bottom_navigation =  findViewById(R.id.bottom_nav);
-        mini_screen =  findViewById(R.id.miniscreen);
-        full_screen =  findViewById(R.id.fullscreen);
 
         editText =  findViewById(R.id.address);
-        hist_btn =  findViewById(R.id.history);
-        back =  findViewById(R.id.back_arrow);
-        forward =  findViewById(R.id.forward_arrow);
-        goButton = findViewById(R.id.go_btn);
-        refresh =  findViewById(R.id.refresh);
-        stop_btn =  findViewById(R.id.stop);
-        homeButton =  findViewById(R.id.home);
+        refresh = findViewById(R.id.refresh);
+        mini_screen = findViewById(R.id.miniscreen);
+        stop_btn = findViewById(R.id.stop);
 
         progressBar =  findViewById(R.id.progress_bar);
         progressBar.setMax(100);
@@ -145,72 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                webView.reload();
-            }
-        });
-
-        stop_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                webView.stopLoading();
-            }
-        });
-
         webView.setWebViewClient(new MyWebViewClient());
-
-        mini_screen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                top_navigation.setVisibility(View.VISIBLE);
-                bottom_navigation.setVisibility(View.VISIBLE);
-                mini_screen.setVisibility(View.GONE);
-            }
-        });
-        full_screen.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               top_navigation.setVisibility(View.GONE);
-               bottom_navigation.setVisibility(View.GONE);
-               mini_screen.setVisibility(View.VISIBLE);
-            }
-        });
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (webView.canGoBack()) {
-                    webView.goBack();
-                }
-            }
-        });
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                webView.setVisibility(View.GONE);
-                homeui.setVisibility(View.VISIBLE);
-            }
-        });
-
-        forward.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (webView.canGoForward()) {
-                    webView.goForward();
-                }
-            }
-        });
-
-        hist_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, History.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -321,4 +250,45 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void refresh_btn(View view) {
+        webView.reload();
+    }
+
+    public void stop_btn(View view) {
+        webView.stopLoading();
+    }
+
+    public void fullscreen_btn(View view) {
+        top_navigation.setVisibility(View.GONE);
+        bottom_navigation.setVisibility(View.GONE);
+        mini_screen.setVisibility(View.VISIBLE);
+    }
+
+    public void back_btn(View view) {
+        if (webView.canGoBack()) {
+            webView.goBack();
+        }
+    }
+
+    public void home_btn(View view) {
+        webView.setVisibility(View.GONE);
+        homeui.setVisibility(View.VISIBLE);
+    }
+
+    public void forward_btn(View view) {
+        if (webView.canGoForward()) {
+            webView.goForward();
+        }
+    }
+
+    public void history_btn(View view) {
+        Intent intent = new Intent(MainActivity.this, History.class);
+        startActivity(intent);
+    }
+
+    public void miniscreen_btn(View view) {
+        top_navigation.setVisibility(View.VISIBLE);
+        bottom_navigation.setVisibility(View.VISIBLE);
+        mini_screen.setVisibility(View.GONE);
+    }
 }
