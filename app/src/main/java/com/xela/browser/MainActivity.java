@@ -183,9 +183,6 @@ public class MainActivity extends AppCompatActivity {
         webView.setVisibility(View.GONE);
         fragmentui.setVisibility(View.VISIBLE);
         loadFragment(new FragmentHistory());
-
-        //Intent intent = new Intent(MainActivity.this, History.class);
-        //startActivity(intent);
     }
 
     public void miniscreen_btn(View view) {
@@ -208,24 +205,5 @@ public class MainActivity extends AppCompatActivity {
         webView.setVisibility(View.VISIBLE);
         bottom_navigation.setVisibility(View.VISIBLE);
 
-    }
-
-    public void book1(){
-        progressBar.setVisibility(View.VISIBLE);
-        webView.setVisibility(View.VISIBLE);
-        fragmentui.setVisibility(View.GONE);
-        try {
-            if(!NetworkState.connectionAvailable(MainActivity.this)){
-                Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-            }else {
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-
-                //webView.loadUrl("https://" + open_book1.getText().toString());
-            }
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
