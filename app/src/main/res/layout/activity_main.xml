@@ -68,44 +68,17 @@
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@drawable/border">
     </WebView>
 
-    <LinearLayout
-        android:id="@+id/homepage"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="0.98"
-        android:visibility="visible">
-
-        <Button
-            android:id="@+id/bookmark_btn_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="mangapark.net"/>
-        <Button
-            android:id="@+id/bookmark_btn_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ww3.heaventoon.com"/>
-        <Button
-            android:id="@+id/bookmark_btn_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="www.mangahasu.se"/>
-        <Button
-            android:id="@+id/bookmark_btn_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="www.bing.com"/>
-        <Button
-            android:id="@+id/bookmark_btn_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="www.google.com"/>
-    </LinearLayout>
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/bottom_nav"

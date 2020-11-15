@@ -19,12 +19,13 @@ import com.xela.browser.R;
 import com.xela.browser.model.HistoryData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
 
-    private ArrayList<HistoryData> dataRecycler;
+    private List<HistoryData> dataRecycler;
 
-    public HistoryAdapter(ArrayList<HistoryData> dataRecycler) {
+    public HistoryAdapter(List<HistoryData> dataRecycler) {
         this.dataRecycler = dataRecycler;
     }
 

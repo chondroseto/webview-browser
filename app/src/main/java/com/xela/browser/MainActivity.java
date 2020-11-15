@@ -1,6 +1,7 @@
 package com.xela.browser;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -26,10 +28,9 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     ProgressBar progressBar;
     ImageButton refresh,mini_screen,stop_btn;
-    LinearLayout homeui,bottom_navigation;
-    Button open_book1,open_book2,open_book3,open_book4,open_book5;
+    LinearLayout bottom_navigation;
     RelativeLayout top_navigation;
-
+    FrameLayout fragmentui;
 
     @Override
     public void onBackPressed() {
@@ -44,13 +45,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeui =  findViewById(R.id.homepage);
-        open_book1 =  findViewById(R.id.bookmark_btn_1);
-        open_book2 = findViewById(R.id.bookmark_btn_2);
-        open_book3 =  findViewById(R.id.bookmark_btn_3);
-        open_book4 =  findViewById(R.id.bookmark_btn_4);
-        open_book5 =  findViewById(R.id.bookmark_btn_5);
-
+        fragmentui =  findViewById(R.id.fragment_container);
 
         top_navigation =  findViewById(R.id.top_nav);
         bottom_navigation =  findViewById(R.id.bottom_nav);
@@ -65,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
         webView =  findViewById(R.id.web_view);
 
-        homepage();
         if (savedInstanceState != null) {
             webView.restoreState(savedInstanceState);
         } else {
@@ -98,12 +92,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if (keyCode == keyEvent.KEYCODE_ENTER){
                     webView.setVisibility(View.VISIBLE);
-                    homeui.setVisibility(View.GONE);
+                    fragmentui.setVisibility(View.GONE);
                     try {
                         if(!NetworkState.connectionAvailable(MainActivity.this)){
                             Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
@@ -143,114 +138,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void homepage(){
-        open_book1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.VISIBLE);
-                homeui.setVisibility(View.GONE);
-                try {
-                    if(!NetworkState.connectionAvailable(MainActivity.this)){
-                        Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-                    }else {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-                        webView.loadUrl("https://" + open_book1.getText().toString());
-                    }
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        open_book2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.VISIBLE);
-                homeui.setVisibility(View.GONE);
-                try {
-                    if(!NetworkState.connectionAvailable(MainActivity.this)){
-                        Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-                    }else {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-                        webView.loadUrl("https://" + open_book2.getText().toString());
-                    }
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        open_book3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.VISIBLE);
-                homeui.setVisibility(View.GONE);
-                try {
-                    if(!NetworkState.connectionAvailable(MainActivity.this)){
-                        Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-                    }else {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-                        webView.loadUrl("https://" + open_book3.getText().toString());
-                    }
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        open_book4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.VISIBLE);
-                homeui.setVisibility(View.GONE);
-                try {
-                    if(!NetworkState.connectionAvailable(MainActivity.this)){
-                        Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-                    }else {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-                        webView.loadUrl("https://" + open_book4.getText().toString());
-                    }
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        open_book5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.VISIBLE);
-                homeui.setVisibility(View.GONE);
-                try {
-                    if(!NetworkState.connectionAvailable(MainActivity.this)){
-                        Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
-                    }else {
-                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-                        webView.loadUrl("https://" + open_book5.getText().toString());
-                    }
-
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     public void refresh_btn(View view) {
+        fragmentui.setVisibility(View.GONE);
         webView.reload();
     }
 
@@ -271,8 +160,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void home_btn(View view) {
-        webView.setVisibility(View.GONE);
-        homeui.setVisibility(View.VISIBLE);
+        if(fragmentui.getVisibility()==View.VISIBLE){
+            top_navigation.setVisibility(View.VISIBLE);
+            webView.setVisibility(View.VISIBLE);
+            fragmentui.setVisibility(View.GONE);
+        }else{
+            webView.setVisibility(View.GONE);
+            fragmentui.setVisibility(View.VISIBLE);
+            loadFragment(new FragmentHome());
+        }
+
     }
 
     public void forward_btn(View view) {
@@ -282,13 +179,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void history_btn(View view) {
-        Intent intent = new Intent(MainActivity.this, History.class);
-        startActivity(intent);
+        top_navigation.setVisibility(View.GONE);
+        webView.setVisibility(View.GONE);
+        fragmentui.setVisibility(View.VISIBLE);
+        loadFragment(new FragmentHistory());
+
+        //Intent intent = new Intent(MainActivity.this, History.class);
+        //startActivity(intent);
     }
 
     public void miniscreen_btn(View view) {
         top_navigation.setVisibility(View.VISIBLE);
         bottom_navigation.setVisibility(View.VISIBLE);
         mini_screen.setVisibility(View.GONE);
+    }
+
+    private boolean loadFragment(Fragment fragment){
+        if (fragment!=null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).addToBackStack("null").commit();
+            return true;
+        }
+        return false;
+    }
+
+    public void reset(){
+        fragmentui.setVisibility(View.GONE);
+        top_navigation.setVisibility(View.VISIBLE);
+        webView.setVisibility(View.VISIBLE);
+        bottom_navigation.setVisibility(View.VISIBLE);
+
+    }
+
+    public void book1(){
+        progressBar.setVisibility(View.VISIBLE);
+        webView.setVisibility(View.VISIBLE);
+        fragmentui.setVisibility(View.GONE);
+        try {
+            if(!NetworkState.connectionAvailable(MainActivity.this)){
+                Toast.makeText(MainActivity.this, "connect", Toast.LENGTH_SHORT).show();
+            }else {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
+                //webView.loadUrl("https://" + open_book1.getText().toString());
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
