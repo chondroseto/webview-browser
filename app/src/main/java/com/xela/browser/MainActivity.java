@@ -34,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
-        webView.goBack();
+        if(fragmentui.getVisibility()==View.VISIBLE){
+            super.onBackPressed();
+            reset();
+        }
+
+        if (webView.getVisibility()==View.VISIBLE){
+            webView.goBack();
+        }
         return;
 
     }
@@ -204,6 +210,5 @@ public class MainActivity extends AppCompatActivity {
         top_navigation.setVisibility(View.VISIBLE);
         webView.setVisibility(View.VISIBLE);
         bottom_navigation.setVisibility(View.VISIBLE);
-
     }
 }
